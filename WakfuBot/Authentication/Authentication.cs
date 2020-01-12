@@ -30,7 +30,6 @@ namespace WakfuBot.Authentication
         private readonly string Account;
         private readonly string Password;
         private readonly TreeNode NodeInfos;
-        private bool Closed = false;
 
 
         public AuthenticationAccount(string account, string password)
@@ -39,9 +38,6 @@ namespace WakfuBot.Authentication
             MainForm.Invoke(() => MainForm.Tree.Nodes.Add(NodeInfos));
             Account = account;
             Password = password;
-
-
-
             Client = new TcpClient(AddressFamily.InterNetwork);
             Client.Connect(AuthServer);
             using (SslStream sslStream = new SslStream(Client.GetStream(), true,
@@ -50,7 +46,6 @@ namespace WakfuBot.Authentication
                 sslStream.AuthenticateAsClient("127.0.0.1");
                 SslStream = sslStream;
                 SubscribeActions();
-                //Send(SendClientVersion.GetPacket());
                 ReadSocket();
             }
         }
@@ -91,7 +86,6 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
             AddOneExecutionAction(AuthMessageType.AUTH_GAME_SERVER, (AuthGameServer o) =>
             {
 //                Send(Empty.GetPacket());
-                Closed = true;
                 Client.Close();
                 Manager = new WakfuDatas(this, o);
                 new Thread(() => Manager.Connect()).Start();
@@ -106,7 +100,7 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
 
         private void ReadSocket()
         {
-            while (! Closed)
+            while (Client.Connected)
             {
                 var dataReceiver = new byte[2048];
                 var receivedCount = SslStream.Read(dataReceiver, 0, dataReceiver.Length);
@@ -115,6 +109,7 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
                 var rd = new ByteReader(dataReceiver.Take(receivedCount).ToArray());
                 ReadData(rd);
             }
+            MainForm.Invoke(() => NodeInfos.Nodes.Add("Disconnectd from auth server"));
         }
 
         private void ReadData(ByteReader rd)
