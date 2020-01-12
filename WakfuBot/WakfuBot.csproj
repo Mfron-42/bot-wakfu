@@ -120,6 +120,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\PacketReceiv\DefaultResultsMessage.cs" />
     <Compile Include="BotActions.cs">
       <SubType>Form</SubType>
     </Compile>

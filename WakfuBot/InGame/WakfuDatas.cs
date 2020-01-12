@@ -70,12 +70,20 @@ namespace PacketEditor.WakfuBot
         private void ConnectSocket(GameServer gameServer)
         {
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-            IPAddress ip = Dns.GetHostEntry(gameServer.Ip).AddressList.First();
+            IPAddress ip = IPAddress.Parse(gameServer.Ip);
             IPEndPoint serverEndPoint = new IPEndPoint(ip, gameServer.Ports.First());
-            Socket.Connect(serverEndPoint);
-            ReadSocket();
+            try
+            {
+                Socket.Connect(serverEndPoint);
+                ReadSocket();
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine(e.ErrorCode);
+                throw;
+            }
         }
-
 
         private void ReadSocket()
         {
@@ -131,7 +139,7 @@ namespace PacketEditor.WakfuBot
 
         private void SubscribeActions()
         {
-            AddOneExecutionAction(PacketType.ClientIp, (ClientIp o) =>
+            AddOneExecutionAction(PacketType.DefaultResultsMessage, (DefaultResultsMessage o) =>
             {
                 Send(SendClientVersion.GetPacket());
             });

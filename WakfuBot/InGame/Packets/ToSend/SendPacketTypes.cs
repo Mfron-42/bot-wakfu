@@ -8,6 +8,10 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
 {
     public enum SendMessageType
     {
+        //1.66.1
+        GameServerKey = 414,
+        SelectCharacter = 17655,
+        //1.63.2
         GuildPrivateMessage = 523,
         InteractiveElementAction = 201,
         ClearTmpInventory = 5217,
@@ -16,9 +20,7 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
         AddHero = 5568,
         MarketConsultRequest = 15263,
         AddMultiman = 5554,
-        SelectCharacter = 2049,
         StartFight = 8001,
-        GameServerKey = 1213,
         InvokSpell = 8109,
         ReadyFight = 8149,
         EndTurn = 8105,

@@ -16,6 +16,7 @@ namespace WakfuBot.WakfuBot.Bot.Players
                 //{ "Steam-Meurt", typeof(DefaultSteamerTerre) },
                 //{ "Ylona", typeof(OsamodasBasLVL) },
                 //{ "Anoly", typeof(OsamodasBasLVL) },
+                { "Thudene", typeof(SkipTurns) },
         };
 
         private static readonly Dictionary<BREED, Type> ExistingBreeds = new Dictionary<BREED, Type>

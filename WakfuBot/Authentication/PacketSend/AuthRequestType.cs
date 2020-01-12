@@ -8,11 +8,10 @@ namespace WakfuBot.Authentication.Packets
 {
     public enum AuthRequestType : short
     {
-        PUBLIC_KEY_REQUEST = 1033,
-        SEND_CLIENT_VERSION = 7,
-        LOGIN = 1026,
-        PROXY_REQUEST = 1035,
-        GAME_SERVER_CONNECT = 1211,
-        EMPTY = 1,
+        PUBLIC_KEY_REQUEST = 487,
+        SEND_CLIENT_VERSION = 9,
+        LOGIN = 444,
+        PROXY_REQUEST = 567,
+        GAME_SERVER_CONNECT = 461,
     };
 }

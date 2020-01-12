@@ -14,10 +14,10 @@ namespace WakfuBot.Authentication
         {
             { AuthMessageType.PUBLIC_KEY, typeof(PublicKey) },
             { AuthMessageType.CLIENT_VERSION, typeof(ClientVersion) },
-            { AuthMessageType.CLIENT_IP, typeof(ClientIp) },
             { AuthMessageType.AUTH_RESULT, typeof(AuthResult) },
             { AuthMessageType.PROXY_RESULT, typeof(ProxyResult) },
             { AuthMessageType.AUTH_GAME_SERVER, typeof(AuthGameServer) },
+            { AuthMessageType.DEFAULT_RESULT_MESSAGE, typeof(DefaultResultsMessage) },
         };
     }
 }
