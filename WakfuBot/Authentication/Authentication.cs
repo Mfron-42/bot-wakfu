@@ -17,18 +17,18 @@ namespace WakfuBot.Authentication
 {
     public class AuthenticationAccount
     {
-        private static IPEndPoint AuthServer = new IPEndPoint(IPAddress.Parse("52.16.189.225"), 5558);
-        private Dictionary<AuthMessageType, List<Action<object>>> ConstantActionStack = InitActionStack();
-        private Dictionary<AuthMessageType, List<Action<object>>> OneExecutionActionStack = InitActionStack();
-        private ByteReader Data = new ByteReader(new byte[0]);
-        private SslStream SslStream;
-        private TcpClient Client;
+        private readonly static IPEndPoint AuthServer = new IPEndPoint(IPAddress.Parse("52.16.189.225"), 5558);
+        private readonly Dictionary<AuthMessageType, List<Action<object>>> ConstantActionStack = InitActionStack();
+        private readonly Dictionary<AuthMessageType, List<Action<object>>> OneExecutionActionStack = InitActionStack();
+        private readonly ByteReader Data = new ByteReader(new byte[0]);
+        private readonly SslStream SslStream;
+        private readonly TcpClient Client;
         private AuthResult AuthRes;
         public GameServer gameServer;
         public WakfuDatas Manager;
-        private string Account;
-        private string Password;
-        private TreeNode NodeInfos;
+        private readonly string Account;
+        private readonly string Password;
+        private readonly TreeNode NodeInfos;
         
         
         public AuthenticationAccount(string account, string password)
@@ -46,16 +46,11 @@ namespace WakfuBot.Authentication
              new RemoteCertificateValidationCallback(ValidateServerCertificate), null))
             {
                 sslStream.AuthenticateAsClient("127.0.0.1");
-                // This is where you read and send data
                 SslStream = sslStream;
                 SubscribeActions();
                 //Send(SendClientVersion.GetPacket());
                 ReadSocket();
             }
-
-            // Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-
-
         }
 
 
@@ -125,7 +120,6 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
                     return;
                 AuthMessageType messageType = (AuthMessageType)Data.ReadShort();
                 ByteReader packet = new ByteReader(Data.Read(size - 4));
-
                 MainForm.Invoke(() => NodeInfos.Nodes.Add(messageType.ToString()));
                 if (AuthNetworkMessages.Constructors.TryGetValue(messageType, out Type type))
                 {
@@ -146,7 +140,6 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
             return actionStack;
         }
 
-
         private void AddConstantAction<T>(AuthMessageType messageType, Action<T> call)
         {
             ConstantActionStack[messageType].Add((obj) => call((T)obj));
@@ -157,5 +150,4 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
             OneExecutionActionStack[messageType].Add((obj) => call((T)obj));
         }
     }
-
 }
