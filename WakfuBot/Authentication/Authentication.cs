@@ -30,8 +30,9 @@ namespace WakfuBot.Authentication
         private readonly string Account;
         private readonly string Password;
         private readonly TreeNode NodeInfos;
-        
-        
+        private bool Closed = false;
+
+
         public AuthenticationAccount(string account, string password)
         {
             NodeInfos = new TreeNode("Authentication");
@@ -90,6 +91,7 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
             AddOneExecutionAction(AuthMessageType.AUTH_GAME_SERVER, (AuthGameServer o) =>
             {
 //                Send(Empty.GetPacket());
+                Closed = true;
                 Client.Close();
                 Manager = new WakfuDatas(this, o);
                 new Thread(() => Manager.Connect()).Start();
@@ -99,12 +101,12 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
         private void Send(byte[] data)
         {
             MainForm.Invoke(() => NodeInfos.Nodes.Add(data.ToHxString()));
-            SslStream.WriteAsync(data, 0, data.Length);
+            SslStream.Write(data, 0, data.Length);
         }
 
         private void ReadSocket()
         {
-            while (true)
+            while (! Closed)
             {
                 var dataReceiver = new byte[2048];
                 var receivedCount = SslStream.Read(dataReceiver, 0, dataReceiver.Length);
