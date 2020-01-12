@@ -18,7 +18,7 @@ namespace WakfuBot.Authentication
 {
     public class AuthenticationAccount
     {
-        private readonly static IPEndPoint AuthServer = new IPEndPoint(IPAddress.Parse("52.16.189.225"), 5558);
+        private readonly static IPEndPoint AuthServer = new IPEndPoint(IPAddress.Parse(Settings.Default.AuthIp), Settings.Default.AuthPort);
         private readonly Dictionary<AuthMessageType, List<Action<object>>> ConstantActionStack = InitActionStack();
         private readonly Dictionary<AuthMessageType, List<Action<object>>> OneExecutionActionStack = InitActionStack();
         private readonly ByteReader Data = new ByteReader(new byte[0]);
