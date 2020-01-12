@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{982F68C3-C7C2-463B-A880-00586D5A9A5B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WakfuBot</RootNamespace>
+    <AssemblyName>WakfuBot</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq, Version=2.5.20831.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.2.5.0\lib\net40\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\PacketReceiv\DefaultResultsMessage.cs" />
+    <Compile Include="BotActions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BotActions.Designer.cs">
+      <DependentUpon>BotActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Account.Designer.cs">
+      <DependentUpon>Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Authentication\AuthEncrypt.cs" />
+    <Compile Include="Authentication\Authentication.cs" />
+    <Compile Include="Authentication\AuthNetworkMessages.cs" />
+    <Compile Include="Authentication\PacketReceiv\AAuthBaseInMessage.cs" />
+    <Compile Include="Authentication\PacketReceiv\AuthGameServer.cs" />
+    <Compile Include="Authentication\PacketReceiv\AuthMessageType.cs" />
+    <Compile Include="Authentication\PacketReceiv\AuthResult.cs" />
+    <Compile Include="Authentication\PacketReceiv\ClientIp.cs" />
+    <Compile Include="Authentication\PacketReceiv\ClientVersion.cs" />
+    <Compile Include="Authentication\PacketReceiv\ProxyResult.cs" />
+    <Compile Include="Authentication\PacketReceiv\PublicKey.cs" />
+    <Compile Include="Authentication\PacketSend\AAuthBaseOutMessage.cs" />
+    <Compile Include="Authentication\PacketSend\Empty.cs" />
+    <Compile Include="Authentication\PacketSend\GameServerConnect.cs" />
+    <Compile Include="Authentication\PacketSend\Login.cs" />
+    <Compile Include="Authentication\PacketSend\AuthRequestType.cs" />
+    <Compile Include="Authentication\PacketSend\ProxyRequest.cs" />
+    <Compile Include="Authentication\PacketSend\SendClientVersion.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\SalleDjChaferAstrub.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\MarketPlaceDataSniffer.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\SalleDjEnutro.cs" />
+    <Compile Include="InGame\Enums\SpellEnum.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\ISelectableCharacter.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\FirstSalleDjChat.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Market\MarketConsultResult.cs" />
+    <Compile Include="InGame\Packets\ToSend\GuildMessage.cs" />
+    <Compile Include="InGame\Packets\ToSend\MarketConsultRequest.cs" />
+    <Compile Include="InGame\Packets\ToSend\InteractiveElementAction.cs" />
+    <Compile Include="InGame\Players\APlayerInformations.cs" />
+    <Compile Include="InGame\Players\SramMultiBasLvl.cs" />
+    <Compile Include="InGame\Players\OsamodasBasLVL.cs" />
+    <Compile Include="InGame\Players\OsamodasAirTerre.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayerName.Designer.cs">
+      <DependentUpon>PlayerName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\ABotActionConfig.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\FirstSalleDjCroco.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\FullDjPerlouze.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\FirstSalleDjHiboux.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\SalleDjPerlouze.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\SalleDjGhostBonta.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SalleDjGelee.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SalleDjKaniboule.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SalleDjMeka.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SalleDjBlackWa.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\SalleDjSrambad.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SalleDjSplit.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SalleDjRat.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SaleDjAbraknyde.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SaleDjBoufCeleste.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\FullDonjonChaferAstrub.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\PepePaleEntrainement.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\FarmZone.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\FullDonjonChat.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\FirstSalleWaConfig.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\FirstSalleDjSacriConfig.cs" />
+    <Compile Include="InGame\BotActions\ActionsConfig\OldConfigs\SaleDjCrack.cs" />
+    <Compile Include="InGame\BotActions\DonjonsActions.cs" />
+    <Compile Include="InGame\BotActions\BaseBotActions.cs" />
+    <Compile Include="InGame\BotActions\MouvementsActions.cs" />
+    <Compile Include="InGame\GlobalClasses\Seplls\SpellsList.cs" />
+    <Compile Include="InGame\Map.cs" />
+    <Compile Include="InGame\BotActions\ConstantBotActions.cs" />
+    <Compile Include="InGame\Players\SkipTurns.cs" />
+    <Compile Include="InGame\Players\DefaultSteamerTerre.cs" />
+    <Compile Include="InGame\Players\DefaultEniEau.cs" />
+    <Compile Include="InGame\Players\DefaultSteamerStasis.cs" />
+    <Compile Include="InGame\Players\APlayerServices.cs" />
+    <Compile Include="InGame\Players\PlayersConstants.cs" />
+    <Compile Include="Utility\Extensions.cs" />
+    <Compile Include="InGame\Packets\PacketsConstant.cs" />
+    <Compile Include="Utility\ByteReader.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\ActorMove.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\CompagnionList.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\ActorStopMove.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\ChangeDirection.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\CharacterEnterPartition.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\CharacterEnterWorld.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\CharacterHealtUpdate.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\HeroCharacterInfo.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\CharacterList.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Despawn.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\AFightBaseAction.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\EndFightCreation.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\ExternalFightCreation.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FightBase.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FightCreation.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FightEnd.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FighterChangeStatus.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FighterMove.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FightersPlacementPositions.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FighterTurnBegin.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FighterTurnEnd.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FightJoin.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FightPlacementStart.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffectApplication.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\AnimationTime.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\ExchangePosition.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\GetCloser.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\HPLoss.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\Pull.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\PullTargetBackToCaster.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\Push.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\RelativeFightTime.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\RunningEffectAction.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\RunningEffectsConstants.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\SpellEffectInfo.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\Summon.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\TeleportBehindTarget.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\TeleportCaster.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffects\TeleportTarget.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\RunningEffectUnapplication.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\FightActionSequenceExecute.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\SpellCastNotification.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\Fight\TableTurnBeggin.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\GameServerAuthResult.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\InteractiveElementSpawn.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\LeaveInstance.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\CharacterInfo.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\ReconnexionInformations.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\MapInfo.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\MonsterStateInfo.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\UknowUtility\ItemIdCacheUpdate.cs" />
+    <Compile Include="InGame\Packets\ToReceiv\UknowUtility\VicinityMessage.cs" />
+    <Compile Include="InGame\Packets\ToSend\AddMultimanRequest.cs" />
+    <Compile Include="InGame\Packets\ToSend\AddHeroRequest.cs" />
+    <Compile Include="InGame\Packets\ToSend\ConfirmFightEnded.cs" />
+    <Compile Include="InGame\Packets\ToSend\ConfirmTurnCount.cs" />
+    <Compile Include="InGame\Packets\ToSend\EndTurn.cs" />
+    <Compile Include="InGame\Packets\ToSend\FightPlacement.cs" />
+    <Compile Include="InGame\Packets\ToSend\FreeSaoul.cs" />
+    <Compile Include="InGame\Packets\ToSend\GameServerKey.cs" />
+    <Compile Include="InGame\Packets\ToSend\InvitGroup.cs" />
+    <Compile Include="InGame\Packets\ToSend\InvokSpell.cs" />
+    <Compile Include="InGame\Packets\ToSend\OutputOnlyProxyMessage.cs" />
+    <Compile Include="InGame\Packets\ToSend\PathMoveRequest.cs" />
+    <Compile Include="InGame\Packets\ToSend\ReadyFight.cs" />
+    <Compile Include="InGame\Packets\ToSend\SelectCharacter.cs" />
+    <Compile Include="InGame\Packets\ToSend\MonsterCollect.cs" />
+    <Compile Include="InGame\Packets\ToSend\SendPacketTypes.cs" />
+    <Compile Include="InGame\Packets\ToSend\StartFight.cs" />
+    <Compile Include="InGame\Packets\ToSend\ClearTmpInventory.cs" />
+    <Compile Include="InGame\Packets\ToSend\Suicide.cs" />
+    <Compile Include="InGame\Packets\ToSend\TeleportAction.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterSpawn.cs" />
+    <Compile Include="InGame\GlobalClasses\MapPosition.cs" />
+    <Compile Include="InGame\GlobalClasses\Seplls\RawSpell.cs" />
+    <Compile Include="Authentication\PacketSend\PublicKeyRequest.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\Breed.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterEmoteInventoryPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\ControlledByIAPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterLandmarkInventoryPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterDiscoveredItems.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterSpellInventoryPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CompanionControllerIdPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CollectPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\GroupPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CurrentMovementPathPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\FightPropsPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\PublicCaractsPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CustomGuildPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CustomLevelPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\WorldPropsPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\TemplatePart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\TEMPLATE.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterShortcutInventoryPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterIDPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharactereHPPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharactereBreedPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharactereNamePart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharactereIdentityPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacteristiquesPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharactereApparencePart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\SerializationsTypes.cs" />
+    <Compile Include="InGame\Enums\CharacteristiquesEnum.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterSerializedPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\SummonDataPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\CharacterFightPropsPart.cs" />
+    <Compile Include="InGame\Packets\CharacterParts\ChatacterPositionPart.cs" />
+    <Compile Include="InGame\UIBotInformation.cs" />
+    <Compile Include="InGame\WakfuDatas.cs" />
+    <Compile Include="Utility\PowerModeHelper.cs" />
+    <EmbeddedResource Include="BotActions.resx">
+      <DependentUpon>BotActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Account.resx">
+      <DependentUpon>Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerName.resx">
+      <DependentUpon>PlayerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
