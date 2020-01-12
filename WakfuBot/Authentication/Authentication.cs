@@ -12,12 +12,13 @@ using System.Windows.Forms;
 using WakfuBot.Authentication.PacketReceiv;
 using WakfuBot.Authentication.Packets;
 using WakfuBot.Authentication.PacketSend;
+using WakfuBot.Properties;
 
 namespace WakfuBot.Authentication
 {
     public class AuthenticationAccount
     {
-        private static IPEndPoint AuthServer = new IPEndPoint(IPAddress.Parse("52.16.189.225"), 5558);
+        private static IPEndPoint AuthServer = new IPEndPoint(IPAddress.Parse(Settings.Default.AuthIp), Settings.Default.AuthPort);
         private Dictionary<AuthMessageType, List<Action<object>>> ConstantActionStack = InitActionStack();
         private Dictionary<AuthMessageType, List<Action<object>>> OneExecutionActionStack = InitActionStack();
         private ByteReader Data = new ByteReader(new byte[0]);
@@ -49,7 +50,6 @@ namespace WakfuBot.Authentication
                 // This is where you read and send data
                 SslStream = sslStream;
                 SubscribeActions();
-                //Send(SendClientVersion.GetPacket());
                 ReadSocket();
             }
 
@@ -67,6 +67,10 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
 
         private void SubscribeActions()
         {
+            AddOneExecutionAction(AuthMessageType.DEFAULT_RESULT_MESSAGE, (DefaultResultsMessage o) =>
+            {
+                Send(SendClientVersion.GetPacket());
+            });
             AddOneExecutionAction(AuthMessageType.PUBLIC_KEY, (PublicKey o) =>
             {
                 Send(Login.GetPacket(Account, Password, o.Salt, o.Key));
@@ -84,12 +88,12 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
             });
             AddOneExecutionAction(AuthMessageType.PROXY_RESULT, (ProxyResult o) =>
             {
-                gameServer = o.GameServers.FirstOrDefault(i => i.Name == "Dathura");
+                gameServer = o.GameServers.FirstOrDefault(i => i.Name == Settings.Default.ServerName);
                 Send(GameServerConnect.GetPacket(gameServer.Id, AuthRes.AccountId));
             });
             AddOneExecutionAction(AuthMessageType.AUTH_GAME_SERVER, (AuthGameServer o) =>
             {
-                Send(Empty.GetPacket());
+//                Send(Empty.GetPacket());
                 Client.Close();
                 Manager = new WakfuDatas(this, o);
                 new Thread(() => Manager.Connect()).Start();
@@ -99,7 +103,8 @@ System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors s
         private void Send(byte[] data)
         {
             MainForm.Invoke(() => NodeInfos.Nodes.Add(data.ToHxString()));
-            SslStream.WriteAsync(data, 0, data.Length);
+            SslStream.Write(data, 0, data.Length);
+//            SslStream.WriteAsync(data, 0, data.Length);
         }
 
         private void ReadSocket()
