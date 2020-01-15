@@ -105,7 +105,7 @@ namespace WakfuBot
             if (Manager.AddHero((string)PlayerList.SelectedItem))
                 SelectedPlayers.Items.Add(PlayerList.SelectedItem);
             else
-                MessageBox.Show("Cannot find this player on configured player list");
+                MessageBox.Show("Cannot find this hero on configured player list");
         }
 
         private void BegginFightToolStripMenuItem_Click(object sender, EventArgs e)
