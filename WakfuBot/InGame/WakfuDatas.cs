@@ -70,7 +70,16 @@ namespace PacketEditor.WakfuBot
         private void ConnectSocket(GameServer gameServer)
         {
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-            IPAddress ip = IPAddress.Parse(gameServer.Ip);
+            IPAddress ip;
+            try
+            {
+                ip = IPAddress.Parse(gameServer.Ip);
+            }
+            catch (Exception e)
+            {
+                ip = Dns.GetHostEntry(gameServer.Ip).AddressList.First();
+            }
+            
             IPEndPoint serverEndPoint = new IPEndPoint(ip, gameServer.Ports.First());
             try
             {
