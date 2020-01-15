@@ -91,21 +91,27 @@ namespace WakfuBot
                 MessageBox.Show("Cannot add more than 2 heros");
                 return;
             }
+            string selectedCharacter = (string)PlayerList.SelectedItem;
             if (MainHero == null) {
-                if (!Manager.SelectPlayer((string)PlayerList.SelectedItem))
-                    MessageBox.Show("Cannot find this player on configured player list");
-                else
-                {
-                    MainHero = (string)PlayerList.SelectedItem;
-                    SelectedPlayers.Items.Add(MainHero);
-                    SelectedPlayers.SetSelected(0, true);
-                }
+                SelectMainHero(selectedCharacter);
                 return;
             }
-            if (Manager.AddHero((string)PlayerList.SelectedItem))
+            if (Manager.AddHero(selectedCharacter))
                 SelectedPlayers.Items.Add(PlayerList.SelectedItem);
             else
                 MessageBox.Show("Cannot find this hero on configured player list");
+        }
+
+        private void SelectMainHero(string playerName)
+        {
+            if (!Manager.SelectPlayer(playerName))
+                MessageBox.Show("Cannot find this player on configured player list");
+            else
+            {
+                MainHero = (string)PlayerList.SelectedItem;
+                SelectedPlayers.Items.Add(MainHero);
+                SelectedPlayers.SetSelected(0, true);
+            }
         }
 
         private void BegginFightToolStripMenuItem_Click(object sender, EventArgs e)
