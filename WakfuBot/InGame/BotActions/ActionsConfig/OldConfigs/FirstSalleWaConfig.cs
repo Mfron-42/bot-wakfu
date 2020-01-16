@@ -51,7 +51,7 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
                     return;
                 var dest = new MapPosition(-27, -11);
                 if (dest.Distance2D(MainPlayer().GetPosition()) < 50)
-                    Manager.Send(PathMoveRequest.GetPacket(MainPlayer().GetPosition().GoToYFirst(dest)));
+                    Manager.Send(ActorPathRequestMessage.GetPacket(MainPlayer().GetPosition().GoToYFirst(dest)));
                 DonjonsActions.LeaveDjWa(1);
             });
             Manager.AddConstantAction(PacketType.CharacterEnterWorld, (CharacterEnterWorld o) =>

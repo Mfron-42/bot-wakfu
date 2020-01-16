@@ -51,7 +51,7 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
                         Y = -1,
                         Z = -0
                     };
-                    Send(PathMoveRequest.GetPacket(MainPlayer().GetPosition().GoToYFirst(step)));
+                    Send(ActorPathRequestMessage.GetPacket(MainPlayer().GetPosition().GoToYFirst(step)));
                     TryFight();
                 }
                 else if (SaleNumber == 3)
@@ -62,7 +62,7 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
                         Y = -8,
                         Z = -0
                     };
-                    Send(PathMoveRequest.GetPacket(MainPlayer().GetPosition().GoToXFirst(step)));
+                    Send(ActorPathRequestMessage.GetPacket(MainPlayer().GetPosition().GoToXFirst(step)));
                     Send(0x00, 0x1E, 0x03, 0x10, 0x11, 0xFF, 0xFF, 0xFF, 0xDF, 0xFF, 0xFF, 0xFF, 0xF8, 0x00, 0x00, 0x0E, 0xE0, 0xE0, 0xE0, 0xFE, 0xFC, 0xFC, 0xFE, 0xE0, 0xE0, 0xE0, 0xE0, 0xE0, 0xE0, 0xE0);
                     TryFight();
                 }
@@ -74,7 +74,7 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
                         Y = -29,
                         Z = -12
                     };
-                    Send(PathMoveRequest.GetPacket(MainPlayer().GetPosition().GoToYFirst(step)));
+                    Send(ActorPathRequestMessage.GetPacket(MainPlayer().GetPosition().GoToYFirst(step)));
                     TryFight();
                 }
                 else if (SaleNumber >= 5)

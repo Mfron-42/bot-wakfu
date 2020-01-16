@@ -5,17 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WakfuBot.InGame.Enums;
 using WakfuBot.WakfuBot.Packets.ToSend;
 
 namespace PacketEditor.WakfuBot.Packets.ToSend
 {
-    public class PathMoveRequest : OutputOnlyProxyMessage
+    public class ActorPathRequestMessage : OutputOnlyProxyMessage
     {
         public static SendMessageType Type = SendMessageType.PathMoveRequest;
-
-        public static byte[] GetPacket(PathMove pathMove)
+        
+        public static byte[] GetPacket(PathMove pathMove, DeplacementType deplacementType = DeplacementType.RUN)
         {
-            byte[] infos = pathMove.StartPos.GetBytes().Concat(pathMove.EncodedPath).ToArray();
+            byte[] infos = ((int)deplacementType).GetBytes().Concat(pathMove.StartPos.GetBytes()).Concat(pathMove.EncodedPath).ToArray();
             return AddHeader(3, Type, infos);
         }
     }

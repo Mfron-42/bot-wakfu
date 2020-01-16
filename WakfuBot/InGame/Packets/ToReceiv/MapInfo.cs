@@ -10,7 +10,7 @@ namespace PacketEditor.WakfuBot.Packets.ToReceiv
         public static PacketType packetType = PacketType.MapInfo;
 
         public byte CharacterCount;
-        public bool WorldSpawn;
+        public bool InFightSpawn;
 
         public byte CharacterType;
 
@@ -18,7 +18,7 @@ namespace PacketEditor.WakfuBot.Packets.ToReceiv
 
         public MapInfo(ByteReader rd)
         {
-            WorldSpawn = rd.ReadByte() == 0;
+            rd.Read(out InFightSpawn);
             rd.Read(out CharacterCount);
             for (int i = 0; i < CharacterCount; i++)
             {

@@ -94,6 +94,13 @@ namespace PacketEditor.WakfuBot
             }
         }
 
+        public void Write(string msg)
+        {
+            string timeString = " : " + DateTime.Now.ToString("hh:mm:ss.fff");
+            MainForm.Invoke(() => NodeInfos.Nodes.Add(msg  + timeString));
+            return;
+        }
+
         private void ReadSocket()
         {
             byte[] dest = new byte[ushort.MaxValue];
@@ -136,13 +143,6 @@ namespace PacketEditor.WakfuBot
             }
         }
 
-        public void Write(string msg)
-        {
-            return;
-            string timeString = " : " + DateTime.Now.ToString("hh:mm:ss.fff");
-            MainForm.Invoke(() => NodeInfos.Nodes.Add(msg  + timeString));
-        }
-
         public void BegginNearestFight()
             => Send(Map.GetFightableMobs(BotActions.MainPlayer().GetPosition()).FirstOrDefault()?.FightPacket());
 
@@ -181,6 +181,7 @@ namespace PacketEditor.WakfuBot
                 return false;
             AddPlayer(character);
             Send(SelectCharacter.GetPacket(character.Id, character.DisplayName()));
+            MainForm.Invoke(() => NodeInfos.Nodes.Add("<- select player " + character.DisplayName()));
             return true;
         }
 

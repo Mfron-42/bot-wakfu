@@ -16,41 +16,41 @@ namespace PacketEditor.WakfuBot
     public static class InGameNetwork
     {
         public static readonly Dictionary<PacketType, Type> Constructors = new Dictionary<PacketType, Type>{
-//            {MapInfo.packetType, typeof(MapInfo)},
 //            {MarketConsultResult.packetType, typeof(MarketConsultResult)},
 //            {ReconnexionInformation.packetType, typeof(ReconnexionInformation)},
-//            {FighterChangeStatus.packetType, typeof(FighterChangeStatus)},
-//            {SpellCastNotification.packetType, typeof(SpellCastNotification) },
-//            {FighterMove.packetType, typeof(FighterMove) },
-//            {Despawn.packetType, typeof(Despawn) },
-//            {LeaveInstance.packetType, typeof(LeaveInstance) },
-//            {ChangeDirection.packetType, typeof(ChangeDirection) },
-//            {ActorMove.packetType, typeof(ActorMove) },
-//            {CharacterHealtUpdate.packetType, typeof(CharacterHealtUpdate) },
 //            {VicinityMessage.packetType, typeof(VicinityMessage) },
 //            {ItemIdCacheUpdate.packetType, typeof(ItemIdCacheUpdate) },
-//            {CharacterEnterWorld.packetType, typeof(CharacterEnterWorld) },
 //            {CharacterEnterPartition.packetType, typeof(CharacterEnterPartition) },
-//            {InteractiveElementSpawn.packetType, typeof(InteractiveElementSpawn) },
-//            {MonsterStateInfo.packetType, typeof(MonsterStateInfo) },
-//            {ActorStopMove.packetType, typeof(ActorStopMove) },
-//            {RunningEffectAction.packetType, typeof(RunningEffectAction) },
-//            {RunningEffectUnapplication.packetType, typeof(RunningEffectUnapplication) },
-//            {RunningEffectApplication.packetType, typeof(RunningEffectApplication) },
 //            {ExternalFightCreation.packetType, typeof(ExternalFightCreation) },
-//            {FightEnd.packetType, typeof(FightEnd) },
-//            {FighterTurnBegin.packetType, typeof(FighterTurnBegin) },
-//            {FighterTurnEnd.packetType, typeof(FighterTurnEnd) },
-//            {FightCreation.packetType, typeof(FightCreation) },
-//            {EndFightCreation.packetType, typeof(EndFightCreation) },
-//            {FightPlacementStart.packetType, typeof(FightPlacementStart) },
-//            {TableTurnBeggin.packetType, typeof(TableTurnBeggin) },
-//            {FightersPlacementPositions.packetType, typeof(FightersPlacementPositions) },
-//            {FightJoin.packetType, typeof(FightJoin) },
-//            {GameServerAuthResult.packetType, typeof(GameServerAuthResult) },
-//            {FightActionSequenceExecute.packetType, typeof(FightActionSequenceExecute) },
-//            {CharacterInformation.packetType, typeof(CharacterInformation) },
 //            {HeroCharacterInformation.packetType, typeof(HeroCharacterInformation) },
+            {FighterChangeStatus.packetType, typeof(FighterChangeStatus)},
+            {SpellCastNotification.packetType, typeof(SpellCastNotification) },
+            {FighterMove.packetType, typeof(FighterMove) },
+            {Despawn.packetType, typeof(Despawn) },
+            {LeaveInstance.packetType, typeof(LeaveInstance) },
+            {ChangeDirection.packetType, typeof(ChangeDirection) },
+            {ActorMove.packetType, typeof(ActorMove) },
+            {CharacterHealtUpdate.packetType, typeof(CharacterHealtUpdate) },
+            {InteractiveElementSpawn.packetType, typeof(InteractiveElementSpawn) },
+            {MonsterStateInfo.packetType, typeof(MonsterStateInfo) },
+            {ActorStopMove.packetType, typeof(ActorStopMove) },
+            {RunningEffectAction.packetType, typeof(RunningEffectAction) },
+            {RunningEffectUnapplication.packetType, typeof(RunningEffectUnapplication) },
+            {RunningEffectApplication.packetType, typeof(RunningEffectApplication) },
+            {FightEnd.packetType, typeof(FightEnd) },
+            {FighterTurnBegin.packetType, typeof(FighterTurnBegin) },
+            {FighterTurnEnd.packetType, typeof(FighterTurnEnd) },
+            {FightCreation.packetType, typeof(FightCreation) },
+            {EndFightCreation.packetType, typeof(EndFightCreation) },
+            {FightPlacementStart.packetType, typeof(FightPlacementStart) },
+            {TableTurnBeggin.packetType, typeof(TableTurnBeggin) },
+            {FightersPlacementPositions.packetType, typeof(FightersPlacementPositions) },
+            {FightJoin.packetType, typeof(FightJoin) },
+            {GameServerAuthResult.packetType, typeof(GameServerAuthResult) },
+            {FightActionSequenceExecute.packetType, typeof(FightActionSequenceExecute) },
+            {MapInfo.packetType, typeof(MapInfo)},
+            {CharacterEnterWorld.packetType, typeof(CharacterEnterWorld) },
+            {CharacterInformation.packetType, typeof(CharacterInformation) },
             {CharacterList.packetType, typeof(CharacterList) },
             {CompagnionList.packetType, typeof(CompagnionList) },
             {PacketType.ClientVersion, typeof(ClientVersion) },
@@ -61,20 +61,21 @@ namespace PacketEditor.WakfuBot
 
     public enum PacketType : short
     {
-        CharacterList = 16873,//16873: ServerCharactersListMessage
+        ClientVersion = 11,
+        DefaultResultsMessage = 373,// packet envoyé a l'établissement de la connection
+        PublicKey = 422,
         GameServerAuthResult = 515,//515: ClientAuthenticationResultsMessage
-        ClientVersion = 11,//11: 
-        PublicKey = 422, //487: 
+        CharacterInfo = 12696, //12696: CharacterInformationMessage
+        FightJoin = 13381, //13381: FightJoinMessage
         CharacterEnterWorld = 13197, //13197: CharacterEnterWorldMessage
         ItemIdCacheUpdate = 13649, //13649: ItemIdCacheUpdateMessage
         CharacterEnterPartition = 13915, //13915: CharacterEnterPartitionMessage
-        CharacterInfo = 12696, //12696: CharacterInformationMessage
+        CharacterList = 16873,//16873: ServerCharactersListMessage
         CompagnionList = 17770, //17770: CompanionListMessage
-        FightJoin = 13381, //13381: FightJoinMessage
         MarketResult = 14409,//14409: MarketConsultResultMessage
         ReconnexionInformation = 12354,//12354: CharacterDataForReconnectionMessage
         HeroCharacterInfo = 13011,//13011 HeroAddedMessage
-        MapInfo = 4102,//TODO ????
+        MapInfo = 13402,//13402 ?ActorSpawnMessage?
         FightActionSequenceExecute = 13120,//13120: FightActionSequenceExecuteMessage
         FighterMove = 12585,//12585: FighterMoveMessage
         SpellCastNotif = 12104, //12104: SpellCastNotificationMessage
@@ -90,7 +91,7 @@ namespace PacketEditor.WakfuBot
         ActorStopMove = 13637,//13637: ActorStopMovementMessage
         RunningEffectAction = 13366, //13366: RunningEffectActionMessage
         RunningEffectUnapplication = 12373,//12373: RunningEffectUnapplicationMessage
-        RunningEffectApplication = 12183,//12183: InteractiveElementSpawnMessage
+        RunningEffectApplication = 13848,//12183: InteractiveElementSpawnMessage
         ExternalFightCreation = 12118,//12118: ExternalFightCreationMessage
         FighterTurnBegin = 13030,//13030: FighterTurnBeginMessage
         FighterTurnEnd = 12131,//12131: FighterTurnEndMessage
@@ -100,6 +101,5 @@ namespace PacketEditor.WakfuBot
         FightPlacementStart = 12719,//12719: FightPlacementStartMessage
         TableTurnBeggin = 13898,//13898: TableTurnBeginMessage
         FightersPlacementPositions = 12970,//12970: FightersPlacementPositionMessage
-        DefaultResultsMessage = 373,// packet envoyé a l'établissement de la connection
     };
 }

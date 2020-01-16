@@ -53,7 +53,7 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
                 if (o.Loosers.Contains(MainPlayer().PlayerId))
                 {
                     Manager.Send(FreeSaoul.GetPacket());
-                    Manager.Send(PathMoveRequest.GetPacket(new MapPosition(-2, -68).GoToXFirst(new MapPosition(0, -71))));
+                    Manager.Send(ActorPathRequestMessage.GetPacket(new MapPosition(-2, -68).GoToXFirst(new MapPosition(0, -71))));
                     Manager.Send(TeleportAction.GetPacket(30736847555150592, 1));
                     return;
                 }

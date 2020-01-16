@@ -11,11 +11,22 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
     public class TeleportAction : OutputOnlyProxyMessage
     {
         public static SendMessageType FightType = SendMessageType.TeleportAction;
-        public static byte[] UNKNOW = new byte[5];
+
+        public static bool DungeonAutoMode = false;
 
         public static byte[] GetPacket(long elemId, int exitId)
         {
-            byte[] infos = UNKNOW.Concat(elemId.GetBytes()).Concat(exitId.GetBytes()).ToArray();
+            return GetPacket(elemId, exitId, 11);
+        }
+
+        public static byte[] GetPacket(long elemId, int exitId, int difficulty)
+        {
+            byte[] infos = elemId.GetBytes()
+                .Concat(exitId)
+                .Concat(DungeonAutoMode)
+                .Concat(difficulty)
+                .ToArray();
+                
             return AddHeader(3, FightType, infos);
         }
     }

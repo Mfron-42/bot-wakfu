@@ -9,23 +9,24 @@ using System.Threading.Tasks;
 
 namespace WakfuBot.WakfuBot.Packets.ToSend
 {
-    public class InvitGroup : OutputOnlyProxyMessage
+    public class InvitGroup : OutputOnlyProxyMessage//GroupClientInvitationRequestMessage
     {
         public static SendMessageType MessageType = SendMessageType.InvitGroup;
 
-        public static byte Unknow1 = 1;
-        public static bool ById = false;
-        public static long Unknow2 = 0;
-        public static long Unknow3 = 0;
-        public static byte Unknow4 = 0;
+        public static byte groupType = 1;//m_groupType
+        public static long groupId = 0;//m_groupId
+        public static bool fromPartySearch = false;//m_fromPartySearch
+        public static long occupationId = 0;//m_occupationId
+        
+        public static byte byName = 0;
 
         public static byte[] GetPacket(string name)
         {
-            byte[] infos = Unknow1.GetBytes()
-                .Concat(ById)
-                .Concat(Unknow2)
-                .Concat(Unknow3)
-                .Concat(Unknow4)
+            byte[] infos = groupType.GetBytes()
+                .Concat(groupId)
+                .Concat(fromPartySearch)
+                .Concat(occupationId)
+                .Concat(byName)
                 .Concat((byte)name.Length)
                 .Concat(name)
                 .ToArray();

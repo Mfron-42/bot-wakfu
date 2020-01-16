@@ -154,6 +154,7 @@
     <Compile Include="InGame\BotActions\ActionsConfig\SalleDjChaferAstrub.cs" />
     <Compile Include="InGame\BotActions\ActionsConfig\MarketPlaceDataSniffer.cs" />
     <Compile Include="InGame\BotActions\ActionsConfig\SalleDjEnutro.cs" />
+    <Compile Include="InGame\Enums\DeplacementType.cs" />
     <Compile Include="InGame\Enums\SpellEnum.cs" />
     <Compile Include="InGame\Packets\CharacterParts\ISelectableCharacter.cs" />
     <Compile Include="InGame\BotActions\ActionsConfig\FirstSalleDjChat.cs" />
@@ -279,7 +280,7 @@
     <Compile Include="InGame\Packets\ToSend\InvitGroup.cs" />
     <Compile Include="InGame\Packets\ToSend\InvokSpell.cs" />
     <Compile Include="InGame\Packets\ToSend\OutputOnlyProxyMessage.cs" />
-    <Compile Include="InGame\Packets\ToSend\PathMoveRequest.cs" />
+    <Compile Include="InGame\Packets\ToSend\ActorPathRequestMessage.cs" />
     <Compile Include="InGame\Packets\ToSend\ReadyFight.cs" />
     <Compile Include="InGame\Packets\ToSend\SelectCharacter.cs" />
     <Compile Include="InGame\Packets\ToSend\MonsterCollect.cs" />

@@ -112,7 +112,7 @@ namespace PacketEditor.WakfuBot.Bot.Actions
         {
             Manager.AddConstantAction(PacketType.MapInfo, (MapInfo o) =>
             {
-                if (o.WorldSpawn)
+                if (! o.InFightSpawn)
                     Map.AddWorldCharacters(o.Units);
                 else
                     Map.AddFighters(o.Units);
