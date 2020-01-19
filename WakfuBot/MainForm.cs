@@ -8,6 +8,7 @@ using PacketEditor.WakfuBot.Bot;
 using WakfuBot.WakfuBot.Packets.ToSend;
 using WakfuBot.WakfuBot.Bot.Actions.ActionsConfig;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace WakfuBot
 {
@@ -189,6 +190,26 @@ namespace WakfuBot
                 AuthConnection.Disconnect();
             if (Manager.IsConnected())
                 Manager.Disconnect();
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var logs = GetLogs(Tree.Nodes);
+            if (logs.Length < 1)
+                return;
+            Clipboard.SetText(logs);
+            MessageBox.Show("Logs copied");
+        }
+
+        private string GetLogs(TreeNodeCollection nodes)
+        {
+            var result = new StringBuilder();
+            foreach (TreeNode node in nodes)
+            {
+                result.Append(node.Text).Append(Environment.NewLine).Append(GetLogs(node.Nodes));
+
+            }
+            return result.ToString();
         }
     }
 }

@@ -56,6 +56,7 @@ namespace WakfuBot
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FightInfos.SuspendLayout();
             this.Map.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -78,7 +79,7 @@ namespace WakfuBot
             this.WinCountLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.WinCountLabel.Location = new System.Drawing.Point(3, 125);
             this.WinCountLabel.Name = "WinCountLabel";
-            this.WinCountLabel.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.WinCountLabel.Padding = new System.Windows.Forms.Padding(5);
             this.WinCountLabel.Size = new System.Drawing.Size(62, 27);
             this.WinCountLabel.TabIndex = 1;
             this.WinCountLabel.Text = "Win : 0";
@@ -89,7 +90,7 @@ namespace WakfuBot
             this.MobCount.Dock = System.Windows.Forms.DockStyle.Top;
             this.MobCount.Location = new System.Drawing.Point(3, 71);
             this.MobCount.Name = "MobCount";
-            this.MobCount.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.MobCount.Padding = new System.Windows.Forms.Padding(5);
             this.MobCount.Size = new System.Drawing.Size(72, 27);
             this.MobCount.TabIndex = 2;
             this.MobCount.Text = "Mobs : 0";
@@ -100,7 +101,7 @@ namespace WakfuBot
             this.TurnCount.Dock = System.Windows.Forms.DockStyle.Top;
             this.TurnCount.Location = new System.Drawing.Point(3, 17);
             this.TurnCount.Name = "TurnCount";
-            this.TurnCount.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.TurnCount.Padding = new System.Windows.Forms.Padding(5);
             this.TurnCount.Size = new System.Drawing.Size(68, 27);
             this.TurnCount.TabIndex = 0;
             this.TurnCount.Text = "Turn : 0";
@@ -143,7 +144,7 @@ namespace WakfuBot
             this.StopAtPicker.CustomFormat = "dd/MM/yyyy HH:mm";
             this.StopAtPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.StopAtPicker.Location = new System.Drawing.Point(4, 261);
-            this.StopAtPicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StopAtPicker.Margin = new System.Windows.Forms.Padding(4);
             this.StopAtPicker.Name = "StopAtPicker";
             this.StopAtPicker.Size = new System.Drawing.Size(204, 22);
             this.StopAtPicker.TabIndex = 12;
@@ -171,7 +172,7 @@ namespace WakfuBot
             this.PosLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.PosLabel.Location = new System.Drawing.Point(3, 17);
             this.PosLabel.Name = "PosLabel";
-            this.PosLabel.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.PosLabel.Padding = new System.Windows.Forms.Padding(5);
             this.PosLabel.Size = new System.Drawing.Size(54, 27);
             this.PosLabel.TabIndex = 12;
             this.PosLabel.Text = "Pos : ";
@@ -208,7 +209,7 @@ namespace WakfuBot
             this.LostFight.Dock = System.Windows.Forms.DockStyle.Left;
             this.LostFight.Location = new System.Drawing.Point(3, 152);
             this.LostFight.Name = "LostFight";
-            this.LostFight.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.LostFight.Padding = new System.Windows.Forms.Padding(5);
             this.LostFight.Size = new System.Drawing.Size(65, 27);
             this.LostFight.TabIndex = 5;
             this.LostFight.Text = "Lost : 0";
@@ -219,7 +220,7 @@ namespace WakfuBot
             this.FightRateTime.Dock = System.Windows.Forms.DockStyle.Top;
             this.FightRateTime.Location = new System.Drawing.Point(3, 98);
             this.FightRateTime.Name = "FightRateTime";
-            this.FightRateTime.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.FightRateTime.Padding = new System.Windows.Forms.Padding(5);
             this.FightRateTime.Size = new System.Drawing.Size(110, 27);
             this.FightRateTime.TabIndex = 5;
             this.FightRateTime.Text = "Fight rate : 0/h";
@@ -230,7 +231,7 @@ namespace WakfuBot
             this.FightTimer.Dock = System.Windows.Forms.DockStyle.Top;
             this.FightTimer.Location = new System.Drawing.Point(3, 44);
             this.FightTimer.Name = "FightTimer";
-            this.FightTimer.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.FightTimer.Padding = new System.Windows.Forms.Padding(5);
             this.FightTimer.Size = new System.Drawing.Size(92, 27);
             this.FightTimer.TabIndex = 3;
             this.FightTimer.Text = "Duration : 0";
@@ -327,13 +328,21 @@ namespace WakfuBot
             this.authenticationToolStripMenuItem,
             this.fightToolStripMenuItem,
             this.gameToolStripMenuItem,
-            this.botActionsToolStripMenuItem});
+            this.botActionsToolStripMenuItem,
+            this.showToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1021, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.showToolStripMenuItem.Text = "Copy logs";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -385,6 +394,7 @@ namespace WakfuBot
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label StopAtTime;
         private System.Windows.Forms.DateTimePicker StopAtPicker;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
     }
 }
 
