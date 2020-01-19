@@ -39,7 +39,7 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
                 if (o.Loosers.Contains(MainPlayer().PlayerId))
                 {
                     Send(FreeSaoul.GetPacket());
-                    Task.Delay(1000).ContinueWith(t => Send(PathMoveRequest.GetPacket(MainPlayer().GetPosition().GoToYFirst(new MapPosition(-32, -69)))));
+                    Task.Delay(1000).ContinueWith(t => Send(ActorPathRequestMessage.GetPacket(MainPlayer().GetPosition().GoToYFirst(new MapPosition(-32, -69)))));
                     Task.Delay(2000).ContinueWith(t => DonjonsActions.EnterDjPerlouze(DjLvl));
                 }
             });

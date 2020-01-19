@@ -11,25 +11,32 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
         //1.66.1
         GameServerKey = 414,
         SelectCharacter = 17655,
+        InvitGroup = 1106,
+        FightPlacement = 12188,
+        ClearTmpInventory = 12652,//12652 TempInventoryClearRequestMessage
+        FreeSaoul = 12181,
+        InvokSpell = 12758,
+        Suicide = 12946,
+        TeleportAction = 13690,
+
+        StartFight = 13165,
+        ReadyFight = 12667,
+
+        EndTurn = 13143,
+        ConfirmTurnCount = 13583,
+        ConfirmFightEnded = 12147,
+        PathMoveRequest = 13515,
+
+        AddMultiman = 13438,
+
         //1.63.2
-        GuildPrivateMessage = 523,
-        InteractiveElementAction = 201,
-        ClearTmpInventory = 5217,
-        InvitGroup = 501,
-        Suicide = 4120,
-        AddHero = 5568,
         MarketConsultRequest = 15263,
-        AddMultiman = 5554,
-        StartFight = 8001,
-        InvokSpell = 8109,
-        ReadyFight = 8149,
-        EndTurn = 8105,
-        ConfirmTurnCount = 8112,
-        TeleportAction = 205,
-        ConfirmFightEnded = 8041,
-        PathMoveRequest = 4113,
-        FreeSaoul = 12553,
-        FightPlacement = 8161,
-        MonsterCollect = 4167
+        AddHero = 5568,
+
+        //unused 
+        InteractiveElementAction = 201,
+        MonsterCollect = 4167,
+        GuildPrivateMessage = 523,
     }
 }
+
