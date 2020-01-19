@@ -217,7 +217,7 @@ namespace PacketEditor.WakfuBot.Bot.Actions
         {
             Manager.AddConstantAction(PacketType.FighterTurnEnd, (FighterTurnEnd o) =>
             {
-                Manager.Send(ConfirmTurnCount.GetPacket(Map.TurnCount++));
+                Manager.Send(FighterTurnEndAckMessage.GetPacket(Map.TurnCount++));
             });
         }
 

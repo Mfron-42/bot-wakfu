@@ -33,6 +33,7 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
         {
             AddConstantAction(PacketType.FighterTurnBegin, (FighterTurnBegin o) =>
             {
+                Console.WriteLine(DateTime.Now + " -> Turn begin " + o.FighterId);
                 if (Players.ContainsKey(o.FighterId))
                 {
                     Players[o.FighterId].TurnStart();

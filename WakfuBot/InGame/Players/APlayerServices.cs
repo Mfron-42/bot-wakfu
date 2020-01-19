@@ -42,6 +42,7 @@ namespace PacketEditor.WakfuBot.Players
 
         protected async void CastSpell(Spell spell, MapPosition castPos)
         {
+            Console.WriteLine(DateTime.Now + " -> Spell " + spell + " launched at " + castPos);
             SpellsList.GetInfos(spell).Cast(this, castPos);
             bool executed = false;
             Manager.AddOneExecutionAction(PacketType.SpellCastNotif, (SpellCastNotification o) =>
@@ -49,10 +50,8 @@ namespace PacketEditor.WakfuBot.Players
                 if (executed)
                     return;
                 executed = true;
-                Manager.AddOneExecutionAction(PacketType.FightActionSequenceExecute, (FightActionSequenceExecute p) =>
-                {
-                    Task.Delay(10).ContinueWith(t => { PlaySpell(); });
-                });
+                Manager.AddOneExecutionAction(PacketType.FightActionSequenceExecute,
+                    (FightActionSequenceExecute p) => { Task.Delay(10).ContinueWith(t => { PlaySpell(); }); });
             });
             Task.Delay(100).ContinueWith(t =>
             {
@@ -83,9 +82,12 @@ namespace PacketEditor.WakfuBot.Players
             => EndCurrentTurn();
 
         public void EndCurrentTurn()
-            => Manager.Send(EndTurn.GetPacket(PlayerId, Map.TableTurnCount));
+        {
+            Console.WriteLine(DateTime.Now + " -> End turn");
+            Manager.Send(EndTurn.GetPacket(PlayerId, Map.TableTurnCount));
+        }
 
-        public static APlayerService Get(ISelectableCharacter character, WakfuDatas manager, Map map)
+    public static APlayerService Get(ISelectableCharacter character, WakfuDatas manager, Map map)
             => PlayersConstants.GetPlayerIA(character, manager, map);
     }
 }

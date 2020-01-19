@@ -8,7 +8,7 @@ using WakfuBot.WakfuBot.Packets.ToSend;
 
 namespace PacketEditor.WakfuBot.Packets.ToSend
 {
-    public class ConfirmTurnCount : OutputOnlyProxyMessage
+    public class FighterTurnEndAckMessage : OutputOnlyProxyMessage
     {
         public static SendMessageType FightType = SendMessageType.ConfirmTurnCount;
 
