@@ -13,7 +13,7 @@ namespace WakfuBot
 {
     public partial class MainForm : Form
     {
-        private AuthenticationAccount account;
+        private AuthConnection AuthConnection;
         public static TreeView Tree;
         public static MainForm Instance;
         public static WakfuDatas Manager;
@@ -77,8 +77,8 @@ namespace WakfuBot
             string password = accountForm.PasswordText.Text;
             accountForm.Dispose();
             new Thread(() => {
-                account = new AuthenticationAccount(accountName, password);
-                Manager = account.Manager;
+                AuthConnection = new AuthConnection(accountName, password);
+                Manager = AuthConnection.Manager;
             }).Start();
         }
 
@@ -185,7 +185,10 @@ namespace WakfuBot
 
         private void deconnexionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Manager.Disconnect();
+            if (AuthConnection.IsConnected())
+                AuthConnection.Disconnect();
+            if (Manager.IsConnected())
+                Manager.Disconnect();
         }
     }
 }

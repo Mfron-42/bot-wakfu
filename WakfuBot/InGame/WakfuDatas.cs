@@ -39,7 +39,7 @@ namespace PacketEditor.WakfuBot
         private Dictionary<PacketType, List<Action<object>>> OneExecutionActionStack = InitActionStack();
         private List<ISelectableCharacter> SelectableCharacters = new List<ISelectableCharacter>();
         private AuthGameServer AuthGameServer;
-        private AuthenticationAccount Auth;
+        private AuthConnection Auth;
         private byte[] Save = new byte[0];
         private Socket Socket;
         private TreeNode NodeInfos;
@@ -55,7 +55,7 @@ namespace PacketEditor.WakfuBot
             return actionStack;
         }
 
-        public WakfuDatas(AuthenticationAccount auth, AuthGameServer authGameServer)
+        public WakfuDatas(AuthConnection auth, AuthGameServer authGameServer)
         {
             NodeInfos = new TreeNode("Game");
             MainForm.Invoke(() => MainForm.Tree.Nodes.Add(NodeInfos));
@@ -68,6 +68,8 @@ namespace PacketEditor.WakfuBot
         }
 
         public void Connect() => ConnectSocket(Auth.gameServer);
+
+        public bool IsConnected() => Socket.Connected;
 
         public void Disconnect() => Socket.Close();
 

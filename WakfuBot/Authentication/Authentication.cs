@@ -16,7 +16,7 @@ using WakfuBot.Properties;
 
 namespace WakfuBot.Authentication
 {
-    public class AuthenticationAccount
+    public class AuthConnection
     {
         private readonly static IPEndPoint AuthServer = new IPEndPoint(IPAddress.Parse(Settings.Default.AuthIp), Settings.Default.AuthPort);
         private readonly Dictionary<AuthMessageType, List<Action<object>>> ConstantActionStack = InitActionStack();
@@ -32,7 +32,7 @@ namespace WakfuBot.Authentication
         private readonly TreeNode NodeInfos;
 
 
-        public AuthenticationAccount(string account, string password)
+        public AuthConnection(string account, string password)
         {
             NodeInfos = new TreeNode("Authentication");
             MainForm.Invoke(() => MainForm.Tree.Nodes.Add(NodeInfos));
@@ -50,6 +50,9 @@ namespace WakfuBot.Authentication
             }
         }
 
+        public bool IsConnected() => Client.Connected;
+
+        public void Disconnect() => Client.Close();
 
         public static bool ValidateServerCertificate(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
 System.Security.Cryptography.X509Certificates.X509Chain chain, SslPolicyErrors sslPolicyErrors)
