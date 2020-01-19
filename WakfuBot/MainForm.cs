@@ -182,5 +182,10 @@ namespace WakfuBot
             else
                 StopAt = DateTime.MaxValue;
         }
+
+        private void deconnexionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Manager.Disconnect();
+        }
     }
 }

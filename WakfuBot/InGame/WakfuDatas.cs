@@ -69,6 +69,8 @@ namespace PacketEditor.WakfuBot
 
         public void Connect() => ConnectSocket(Auth.gameServer);
 
+        public void Disconnect() => Socket.Close();
+
         private void ConnectSocket(GameServer gameServer)
         {
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
@@ -92,7 +94,7 @@ namespace PacketEditor.WakfuBot
             {
                 Console.WriteLine(e);
                 Console.WriteLine(e.ErrorCode);
-                throw;
+                MessageBox.Show("Deconnecte");
             }
         }
 
