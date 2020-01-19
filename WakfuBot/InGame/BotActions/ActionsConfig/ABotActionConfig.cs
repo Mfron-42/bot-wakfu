@@ -4,9 +4,11 @@ using PacketEditor.WakfuBot.Packets.ToReceiv;
 using PacketEditor.WakfuBot.Players;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WakfuBot.InGame.Packets.ToSend;
 
 namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
 {
@@ -36,8 +38,11 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
         protected void Send(params byte[] bytes)
             => Manager.SendBytes(bytes);
 
-        protected void Write(string message)
-            => Manager.Write(message);
+        protected void Send(IPacket packet)
+            => Manager.Send(packet);
+
+        protected void Write(string message, Color color)
+            => Manager.Write(message, color);
 
         public abstract void AddConfig();
 

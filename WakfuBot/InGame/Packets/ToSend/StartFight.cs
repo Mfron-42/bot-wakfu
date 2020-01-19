@@ -8,24 +8,32 @@ namespace PacketEditor.WakfuBot.PacketTypes
     public class StartFight : OutputOnlyProxyMessage
     {   
         public static SendMessageType MessageType = SendMessageType.StartFight;
+        public long CharacterId;
+        public MapPosition MapPosition;
+        public bool LockFight;
 
-        public static byte[] GetPacket(Character character, bool lockFight = true)
+        public static StartFight GetPacket(Character character, bool lockFight = true)
         {
-            byte[] infos = character.CharacterIDPart.CharacterId.GetBytes()
-                .Concat(character.ChatacterPositionPart.CharacterPositon.GetBytes())
-                .Concat(new byte[] { lockFight.ToByte() })
+            return GetPacket(character.CharacterIDPart.CharacterId, character.ChatacterPositionPart.CharacterPositon, lockFight);
+        }
+
+        public static StartFight GetPacket(long characterId, MapPosition mapPosition, bool lockFight = true)
+        {
+            return new StartFight
+            {
+                CharacterId = characterId,
+                MapPosition = mapPosition,
+                LockFight = lockFight
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            byte[] infos = CharacterId.GetBytes()
+                .Concat(MapPosition.GetBytes())
+                .Concat(LockFight.GetBytes())
                 .ToArray();
             return AddHeader(3, MessageType, infos);
         }
-
-        public static byte[] GetPacket(long id, MapPosition position, bool lockFight = true)
-        {
-            byte[] infos = id.GetBytes()
-                .Concat(position.GetBytes())
-                .Concat(new byte[] { lockFight.ToByte() })
-                .ToArray();
-            return AddHeader(3, MessageType, infos);
-        }
-
     }
 }

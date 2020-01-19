@@ -21,7 +21,7 @@ namespace WakfuBot.WakfuBot.Bot.Players
 
         private static readonly Dictionary<BREED, Type> ExistingBreeds = new Dictionary<BREED, Type>
         {
-            { BREED.STEAMER, typeof(DefaultSteamerStasis) },
+            { BREED.STEAMER, typeof(DefaultSteamerTerre) },
             //{ BREED.STEAMER, typeof(DefaultSteamerTerre) },
             { BREED.LUMINO, typeof(SkipTurns) },
             { BREED.KROSMOGLOB, typeof(SkipTurns) },

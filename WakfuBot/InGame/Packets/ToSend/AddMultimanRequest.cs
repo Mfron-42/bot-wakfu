@@ -12,10 +12,19 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
     public class AddCompagnionRequest : OutputOnlyProxyMessage
     {
         public static SendMessageType MessageType = SendMessageType.AddMultiman;
+        public long MultimanId;
 
-        public static byte[] GetPacket(long multimanId)
+        public static AddCompagnionRequest GetPacket(long multimanId)
         {
-            return AddHeader(3, MessageType, multimanId.GetBytes());
+            return new AddCompagnionRequest()
+            {
+                MultimanId = multimanId
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            return AddHeader(3, MessageType, MultimanId.GetBytes());
         }
     }
 }

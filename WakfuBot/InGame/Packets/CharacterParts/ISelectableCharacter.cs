@@ -1,4 +1,6 @@
-﻿using WakfuBot.WakfuBot.Structures.Character;
+﻿using WakfuBot.InGame.Packets.ToSend;
+using WakfuBot.WakfuBot.Packets.ToSend;
+using WakfuBot.WakfuBot.Structures.Character;
 
 namespace PacketEditor.WakfuBot.Packets.ToReceiv
 {
@@ -8,6 +10,6 @@ namespace PacketEditor.WakfuBot.Packets.ToReceiv
         BREED Breed { get; set; }
         string DisplayName();
 
-        byte[] GetSelectionPacket();
+        IPacket GetSelectionPacket();
     }
 }

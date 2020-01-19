@@ -7,10 +7,19 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
     public class ReadyFight : OutputOnlyProxyMessage
     {
         public static SendMessageType MessageType = SendMessageType.ReadyFight;
+        public bool IsReady;
 
-        public static byte[] GetPacket(bool ready = true)
+        public static ReadyFight GetPacket(bool isReady = true)
         {
-            return AddHeader(3, MessageType, new[] { ready.ToByte() } );
+            return new ReadyFight()
+            {
+                IsReady = isReady
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            return AddHeader(3, MessageType, IsReady.GetBytes());
         }
     }
 }

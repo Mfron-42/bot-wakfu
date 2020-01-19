@@ -17,21 +17,28 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
         public static long groupId = 0;//m_groupId
         public static bool fromPartySearch = false;//m_fromPartySearch
         public static long occupationId = 0;//m_occupationId
-        
         public static byte byName = 0;
 
-        public static byte[] GetPacket(string name)
+        public string CharacterName;
+
+        public static InvitGroup GetPacket(string characterName)
+        {
+            return new InvitGroup
+            {
+                CharacterName = characterName
+            };
+        }
+
+        public override byte[] GetBytes()
         {
             byte[] infos = groupType.GetBytes()
                 .Concat(groupId)
                 .Concat(fromPartySearch)
                 .Concat(occupationId)
                 .Concat(byName)
-                .Concat((byte)name.Length)
-                .Concat(name)
+                .Concat(CharacterName.GetBytes())
                 .ToArray();
             return AddHeader(6, MessageType, infos);
         }
-
     }
 }

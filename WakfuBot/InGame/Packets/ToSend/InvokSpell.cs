@@ -11,20 +11,34 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
     public class InvokSpell : OutputOnlyProxyMessage
     {
         public static SendMessageType FightType = SendMessageType.InvokSpell;
+        public long CharacterId;
+        public long SpellId;
+        public MapPosition TargetCell;
 
-        public static byte[] GetPacket(long characterId, long spellId, MapPosition pos)
-            => GetPacket(characterId, spellId, pos.X, pos.Y, pos.Z);
+        public static InvokSpell GetPacket(long characterId, long spellId, MapPosition targetCell)
+        {
 
-        public static byte[] GetPacket(long characterId, long spellId, int posX, int posY, short posZ)
+            return new InvokSpell
+            {
+                CharacterId = characterId,
+                SpellId = spellId,
+                TargetCell = targetCell
+            };
+        }
+
+        public override byte[] GetBytes()
         {
             byte[] infos =
-                characterId.GetBytes()
-                .Concat(spellId.GetBytes())
-                .Concat(posX.GetBytes())
-                .Concat(posY.GetBytes())
-                .Concat(posZ.GetBytes())
+                CharacterId.GetBytes()
+                .Concat(SpellId.GetBytes())
+                .Concat(TargetCell.GetBytes())
                 .ToArray();
             return AddHeader(3, FightType, infos);
+        }
+
+        public override string ToString()
+        {
+            return "Cast spell " + SpellId + " with " + CharacterId + " on " + TargetCell;
         }
     }
 }

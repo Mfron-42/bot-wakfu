@@ -12,10 +12,21 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
     public class GuildMessage : OutputOnlyProxyMessage
     {
         public static SendMessageType MessageType = SendMessageType.GuildPrivateMessage;
+        public long GroupId;
+        public string Message;
 
-        public static byte[] GetPacket(long groupId, string message)
+        public static GuildMessage GetPacket(long groupId, string message)
         {
-            return AddHeader(6, MessageType, groupId.GetBytes().Concat(message.GetBytes()).ToArray());
+            return new GuildMessage
+            {
+                GroupId = groupId,
+                Message = message
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            return AddHeader(6, MessageType, GroupId.GetBytes().Concat(Message.GetBytes()).ToArray());
         }
     }
 }

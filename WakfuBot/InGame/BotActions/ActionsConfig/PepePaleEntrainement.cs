@@ -42,7 +42,6 @@ namespace WakfuBot.WakfuBot.Bot.Actions.ActionsConfig
             {
                 if (o.FightId != Map.FightId)
                     return;
-                Write("---LEAVE---");
                 DonjonsActions.LeavePepePaleSalle();
                 if (!Play)
                     return;

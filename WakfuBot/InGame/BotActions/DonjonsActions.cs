@@ -24,7 +24,7 @@ namespace PacketEditor.WakfuBot.Bot.Actions
         {
             Manager.Send(ActorPathRequestMessage.GetPacket(new MapPosition(-2, 0).GoToXFirst(new MapPosition(0, 0))));
             //300ms by cell
-            await Task.Delay(600);
+            await Task.Delay(3000);
             // We move one cell in front of the teleporter to avoid
             // that the server refuse the TeleportAction
             Manager.Send(ActorPathRequestMessage.GetPacket(new MapPosition(0, 0).GoToXFirst(new MapPosition(1, 0))));

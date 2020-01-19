@@ -12,10 +12,19 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
     public class GameServerKey : OutputOnlyProxyMessage
     {
         public static SendMessageType RequestType = SendMessageType.GameServerKey;
+        public byte[] Key;
 
-        public static byte[] GetPacket(byte[] key)
+        public static GameServerKey GetPacket(byte[] key)
         {
-            byte[] infos = key.Length.GetBytes().Concat(key).ToArray();
+            return new GameServerKey
+            {
+                Key = key
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            byte[] infos = Key.Length.GetBytes().Concat(Key).ToArray();
             return AddHeader(1, RequestType, infos);
         }
     }

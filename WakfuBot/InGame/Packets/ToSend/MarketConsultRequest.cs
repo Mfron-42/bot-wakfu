@@ -13,10 +13,30 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
     {
         public static SendMessageType MessageType = SendMessageType.MarketConsultRequest;
 
-        public static byte[] GetPacket(short itemType = -1, int minPrice = -1, int maxPrice = -1, short sortType = -1, short firstIndex = 0, bool lowestmode = true)
+        public short ItemType;
+        public int MinPrice;
+        public int MaxPrice;
+        public short SortType;
+        public short FirstIndex;
+        public bool LowestMode;
+
+        public static MarketConsultRequest GetPacket(short itemType = -1, int minPrice = -1, int maxPrice = -1, short sortType = -1, short firstIndex = 0, bool lowestmode = true)
         {
-            byte sortingType = (byte)sortType;
-            return AddHeader(3, MessageType, itemType.GetBytes().Concat(minPrice.GetBytes()).Concat(maxPrice.GetBytes()).Concat(sortingType.GetBytes()).Concat(firstIndex.GetBytes()).Concat(lowestmode.GetBytes()).ToArray());
+            return new MarketConsultRequest
+            {
+                ItemType = itemType,
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
+                SortType = sortType,
+                FirstIndex = firstIndex,
+                LowestMode = lowestmode
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            byte sortingType = (byte)SortType;
+            return AddHeader(3, MessageType, ItemType.GetBytes().Concat(MinPrice.GetBytes()).Concat(MaxPrice.GetBytes()).Concat(sortingType.GetBytes()).Concat(FirstIndex.GetBytes()).Concat(LowestMode.GetBytes()).ToArray());
         }
     }
 }

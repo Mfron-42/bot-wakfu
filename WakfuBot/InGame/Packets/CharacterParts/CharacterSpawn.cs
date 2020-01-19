@@ -84,7 +84,7 @@ namespace PacketEditor.WakfuBot.Packets.Utility
         }
 
 
-        public byte[] FightPacket() => StartFight.GetPacket(this);
+        public StartFight FightPacket() => StartFight.GetPacket(this);
 
 
         private static Dictionary<SERIALIZATION_TYPE, Type[]> Serializationsinstructions = new Dictionary<SERIALIZATION_TYPE, Type[]>

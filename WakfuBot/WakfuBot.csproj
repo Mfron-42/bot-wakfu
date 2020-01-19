@@ -162,6 +162,7 @@
     <Compile Include="InGame\Packets\ToSend\GuildMessage.cs" />
     <Compile Include="InGame\Packets\ToSend\MarketConsultRequest.cs" />
     <Compile Include="InGame\Packets\ToSend\InteractiveElementAction.cs" />
+    <Compile Include="InGame\Packets\ToSend\IPacket.cs" />
     <Compile Include="InGame\Players\APlayerInformations.cs" />
     <Compile Include="InGame\Players\SramMultiBasLvl.cs" />
     <Compile Include="InGame\Players\OsamodasBasLVL.cs" />

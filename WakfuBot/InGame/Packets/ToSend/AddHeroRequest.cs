@@ -12,11 +12,19 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
     public class AddHeroRequest : OutputOnlyProxyMessage
     {
         public static SendMessageType MessageType = SendMessageType.AddHero;
+        public long HeroId;
 
-        public static byte[] GetPacket(long heroId)
+        public static AddHeroRequest GetPacket(long heroId)
         {
-            return AddHeader(3, MessageType, heroId.GetBytes());
+            return new AddHeroRequest
+            {
+                HeroId = heroId
+            };
         }
 
+        public override byte[] GetBytes()
+        {
+            return AddHeader(3, MessageType, HeroId.GetBytes());
+        }
     }
 }

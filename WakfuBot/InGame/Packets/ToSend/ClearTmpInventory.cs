@@ -12,7 +12,12 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
     {
         public static SendMessageType MessageType = SendMessageType.ClearTmpInventory;
 
-        public static byte[] GetPacket()
+        public static ClearTmpInventory GetPacket()
+        {
+            return new ClearTmpInventory();
+        }
+
+        public override byte[] GetBytes()
         {
             return AddHeader(3, MessageType);
         }

@@ -12,10 +12,21 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
     public class SelectCharacter : OutputOnlyProxyMessage
     {
         public static SendMessageType RequestType = SendMessageType.SelectCharacter;
+        public long CharacterId;
+        public string CharacterName;
 
-        public static byte[] GetPacket(long characterId, string characterName)
+        public static SelectCharacter GetPacket(long characterId, string characterName)
         {
-            byte[] infos = characterId.GetBytes().Concat(characterName.Length).Concat(characterName).ToArray();
+            return new SelectCharacter
+            {
+                CharacterId = characterId,
+                CharacterName = characterName
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            byte[] infos = CharacterId.GetBytes().Concat(CharacterName.Length).Concat(CharacterName).ToArray();
             return AddHeader(2, RequestType, infos);
         }
     }

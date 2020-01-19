@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WakfuBot.InGame.Packets.ToSend;
 using WakfuBot.WakfuBot.Packets.ToSend;
 using WakfuBot.WakfuBot.Structures.Character;
 
@@ -52,7 +53,7 @@ namespace PacketEditor.WakfuBot.Packets.ToReceiv
             Unknow = rd.Read(4);
         }
 
-        public byte[] GetSelectionPacket()
+        public IPacket GetSelectionPacket()
             => AddCompagnionRequest.GetPacket(Id);
 
         public string DisplayName()

@@ -9,6 +9,7 @@ using PacketEditor.WakfuBot.PacketTypes;
 using PacketEditor.WakfuBot.Players;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO.Pipes;
 using System.Linq;
 using System.Net;
@@ -23,6 +24,7 @@ using WakfuBot.Authentication;
 using WakfuBot.Authentication.PacketReceiv;
 using WakfuBot.Authentication.Packets;
 using WakfuBot.Authentication.PacketSend;
+using WakfuBot.InGame.Packets.ToSend;
 using WakfuBot.WakfuBot;
 using WakfuBot.WakfuBot.Bot.Actions.ActionsConfig;
 using WakfuBot.WakfuBot.Bot.Players;
@@ -90,14 +92,20 @@ namespace PacketEditor.WakfuBot
             {
                 Console.WriteLine(e);
                 Console.WriteLine(e.ErrorCode);
-                throw;
+                //throw;
             }
         }
 
-        public void Write(string msg)
+        public void Write(string msg, Color color)
         {
-            string timeString = " : " + DateTime.Now.ToString("hh:mm:ss.fff");
-            MainForm.Invoke(() => NodeInfos.Nodes.Add(msg  + timeString));
+            if (msg.Contains("Running")) // to remove
+                return;
+            //string timeString = " : " + DateTime.Now.ToString("hh:mm:ss.fff");
+            TreeNode treeNode = new TreeNode(msg)
+            {
+                BackColor = color
+            };
+            MainForm.Invoke(() => NodeInfos.Nodes.Add(treeNode));
             return;
         }
 
@@ -123,7 +131,8 @@ namespace PacketEditor.WakfuBot
                 Save = Save.Skip(size).ToArray();
                 PacketType messageType = (PacketType)rd.ReadShort();
 
-                Write(messageType.ToString());
+                
+                Write(messageType.ToString(), Color.Orange);
 
                 //var searched = new byte[] { 0x08, 0xAF, 0x1D, 0x10 };
                 //if (Enumerable.Range(0, rd.Data.Length).Any(i => rd.Data.Skip(i).Take(searched.Length).SequenceEqual(searched))){
@@ -187,11 +196,17 @@ namespace PacketEditor.WakfuBot
 
         public void SendBytes(params byte[] data) => Send(data);
 
+
+        public void Send(IPacket data)
+        {
+            Write(data.ToString(), Color.Pink);
+            Send(data.GetBytes());
+        }
+
         public void Send(byte[] data)
         {
             if (Sleep || data == null)
                 return;
-            //SendMessageType type = (SendMessageType)data.Skip(3).Take(2).ToArray().GetShort();
             Socket.BeginSend(data, 0, data.Length, SocketFlags.None, null, null);
         }
 

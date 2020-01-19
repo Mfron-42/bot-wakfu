@@ -12,7 +12,12 @@ namespace WakfuBot.WakfuBot.Packets.ToSend
     {
         public static SendMessageType MessageType = SendMessageType.Suicide;
 
-        public static byte[] GetPacket()
+        public static Suicide GetPacket()
+        {
+            return new Suicide();
+        }
+
+        public override byte[] GetBytes()
         {
             return AddHeader(3, MessageType);
         }

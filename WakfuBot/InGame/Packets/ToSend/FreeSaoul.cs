@@ -11,7 +11,12 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
     {
         public static SendMessageType Type = SendMessageType.FreeSaoul;
 
-        public static byte[] GetPacket()
+        public static FreeSaoul GetPacket()
+        {
+            return new FreeSaoul();
+        }
+
+        public override byte[] GetBytes()
         {
             return AddHeader(3, Type, new byte[0]);
         }

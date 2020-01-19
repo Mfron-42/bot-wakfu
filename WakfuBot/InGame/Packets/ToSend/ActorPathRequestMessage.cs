@@ -13,10 +13,21 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
     public class ActorPathRequestMessage : OutputOnlyProxyMessage
     {
         public static SendMessageType Type = SendMessageType.PathMoveRequest;
+        public PathMove PathMove;
+        public DeplacementType DeplacementType;
         
-        public static byte[] GetPacket(PathMove pathMove, DeplacementType deplacementType = DeplacementType.RUN)
+        public static ActorPathRequestMessage GetPacket(PathMove pathMove, DeplacementType deplacementType = DeplacementType.RUN)
         {
-            byte[] infos = ((int)deplacementType).GetBytes().Concat(pathMove.StartPos.GetBytes()).Concat(pathMove.EncodedPath).ToArray();
+            return new ActorPathRequestMessage()
+            {
+                DeplacementType = deplacementType,
+                PathMove = pathMove
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            byte[] infos = ((int)DeplacementType).GetBytes().Concat(PathMove.StartPos.GetBytes()).Concat(PathMove.EncodedPath).ToArray();
             return AddHeader(3, Type, infos);
         }
     }

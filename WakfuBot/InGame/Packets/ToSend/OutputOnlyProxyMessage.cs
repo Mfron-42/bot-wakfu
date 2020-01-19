@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WakfuBot.InGame.Packets.ToSend;
 using WakfuBot.WakfuBot.Packets.ToSend;
 
 namespace PacketEditor.WakfuBot.Packets.ToSend
 {
-    public class OutputOnlyProxyMessage
+    public abstract class OutputOnlyProxyMessage : IPacket
     {
         public static short HEADER_SIZE = 5;
 
@@ -21,5 +22,12 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
 
         public static byte[] AddHeader(byte architectureTarget, SendMessageType packetId)
             => AddHeader(architectureTarget, packetId, new byte[0]);
+
+        public abstract byte[] GetBytes();
+
+        public override string ToString()
+        {
+            return GetType().Name;
+        }
     }
 }

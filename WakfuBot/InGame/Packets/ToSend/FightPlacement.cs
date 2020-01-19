@@ -11,10 +11,21 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
     public sealed class FightPlacement : OutputOnlyProxyMessage
     {
         public static SendMessageType FightType = SendMessageType.FightPlacement;
+        public MapPosition MapPosition;
+        public long CharacterId;
 
-        public static byte[] GetPacket(MapPosition pos, long characterId)
+        public static FightPlacement GetPacket(MapPosition pos, long characterId)
         {
-            byte[] infos = characterId.GetBytes().Concat(pos.GetBytes()).ToArray();
+            return new FightPlacement
+            {
+                MapPosition = pos,
+                CharacterId = characterId
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            byte[] infos = CharacterId.GetBytes().Concat(MapPosition.GetBytes()).ToArray();
             return AddHeader(3, FightType, infos);
         }
     }

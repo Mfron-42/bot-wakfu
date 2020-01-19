@@ -10,13 +10,20 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
 {
     public class ConfirmFightEnded : OutputOnlyProxyMessage
     {
-        private static SendMessageType fightType = SendMessageType.ConfirmFightEnded;
+        public static SendMessageType FightType = SendMessageType.ConfirmFightEnded;
+        public int FightId;
 
-        public static SendMessageType FightType { get => fightType; set => fightType = value; }
-
-        public static byte[] GetPacket(int fightId)
+        public static ConfirmFightEnded GetPacket(int fightId)
         {
-            byte[] infos = fightId.GetBytes().Concat(new byte[] { 1 }).ToArray();
+            return new ConfirmFightEnded
+            {
+                FightId = fightId
+            };
+        }
+
+        public override byte[] GetBytes()
+        {
+            byte[] infos = FightId.GetBytes().Concat(new byte[] { 1 }).ToArray();
             return AddHeader(3, FightType, infos);
         }
     }

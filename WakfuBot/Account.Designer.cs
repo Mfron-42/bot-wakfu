@@ -39,7 +39,7 @@
             this.AccountText.Name = "AccountText";
             this.AccountText.Size = new System.Drawing.Size(153, 22);
             this.AccountText.TabIndex = 0;
-            this.AccountText.Text = "linq-query";
+            this.AccountText.Text = "matthieutessan";
             // 
             // PasswordText
             // 
@@ -48,7 +48,7 @@
             this.PasswordText.PasswordChar = '*';
             this.PasswordText.Size = new System.Drawing.Size(152, 22);
             this.PasswordText.TabIndex = 1;
-            this.PasswordText.Text = "leblanc95";
+            this.PasswordText.Text = "Leblanc95**";
             // 
             // ConnectAccount
             // 

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WakfuBot.InGame.Packets.ToSend;
 using WakfuBot.WakfuBot.Packets.ToSend;
 using WakfuBot.WakfuBot.Structures.Character;
 
@@ -106,7 +107,7 @@ namespace WakfuBot.WakfuBot.Packets.ToReceiv
             return Name;
         }
 
-        public byte[] GetSelectionPacket()
+        public IPacket GetSelectionPacket()
             => AddHeroRequest.GetPacket(Id);
 
         public class StuffApparence
