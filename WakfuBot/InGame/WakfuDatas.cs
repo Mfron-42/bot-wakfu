@@ -92,15 +92,12 @@ namespace PacketEditor.WakfuBot
             {
                 Console.WriteLine(e);
                 Console.WriteLine(e.ErrorCode);
-                //throw;
+                throw;
             }
         }
 
         public void Write(string msg, Color color)
         {
-            if (msg.Contains("Running")) // to remove
-                return;
-            //string timeString = " : " + DateTime.Now.ToString("hh:mm:ss.fff");
             TreeNode treeNode = new TreeNode(msg)
             {
                 BackColor = color
@@ -159,11 +156,11 @@ namespace PacketEditor.WakfuBot
         {
             AddOneExecutionAction(PacketType.DefaultResultsMessage, (DefaultResultsMessage o) =>
             {
-                Send(SendClientVersion.GetPacket());
+                SendBytes(SendClientVersion.GetPacket());
             });
             AddOneExecutionAction(PacketType.ClientVersion, (ClientVersion o) =>
             {
-                Send(PublicKeyRequest.GetPacket(1));
+                SendBytes(PublicKeyRequest.GetPacket(1));
             });
             AddOneExecutionAction(PacketType.PublicKey, (PublicKey o) =>
             {
@@ -194,7 +191,12 @@ namespace PacketEditor.WakfuBot
             return true;
         }
 
-        public void SendBytes(params byte[] data) => Send(data);
+        public void SendBytes(params byte[] data)
+        {
+            Send(data);
+            SendMessageType type = (SendMessageType)data.Skip(3).Take(2).ToArray().GetShort();
+            Write("Data : " + type, Color.Pink);
+        }
 
 
         public void Send(IPacket data)
@@ -203,7 +205,7 @@ namespace PacketEditor.WakfuBot
             Send(data.GetBytes());
         }
 
-        public void Send(byte[] data)
+        private void Send(byte[] data)
         {
             if (Sleep || data == null)
                 return;
