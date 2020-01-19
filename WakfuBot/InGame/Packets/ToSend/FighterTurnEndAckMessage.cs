@@ -26,10 +26,5 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
                 TurnCount = turnCount
             };
         }
-
-        public override string ToString()
-        {
-            return "Confirm turn end : " + TurnCount;
-        }
     }
 }

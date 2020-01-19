@@ -8,8 +8,6 @@ namespace WakfuBot.InGame.Packets.ToSend
 {
     public interface IPacket
     {
-        string ToString();
-
         byte[] GetBytes();
     }
 }

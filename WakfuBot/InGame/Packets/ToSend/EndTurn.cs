@@ -31,10 +31,5 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
                 .ToArray();
             return AddHeader(3, FightType, infos);
         }
-
-        public override string ToString()
-        {
-            return "End turn of " + CharacterId + " table count : " + TableTurnCount;
-        }
     }
 }

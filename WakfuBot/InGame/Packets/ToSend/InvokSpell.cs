@@ -35,10 +35,5 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
                 .ToArray();
             return AddHeader(3, FightType, infos);
         }
-
-        public override string ToString()
-        {
-            return "Cast spell " + SpellId + " with " + CharacterId + " on " + TargetCell;
-        }
     }
 }

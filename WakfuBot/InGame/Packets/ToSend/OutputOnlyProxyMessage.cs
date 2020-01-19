@@ -1,4 +1,5 @@
-﻿using PacketEditor.WakfuBot.PacketTypes;
+﻿using Newtonsoft.Json;
+using PacketEditor.WakfuBot.PacketTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,15 @@ namespace PacketEditor.WakfuBot.Packets.ToSend
 
         public override string ToString()
         {
-            return GetType().Name;
+            var className = GetType().Name;
+            var fields = GetType().GetFields();
+            var fieldsInfos = fields.Select(field =>
+            {
+                var fieldName = field.Name;
+                var fieldValue = field.GetValue(this);
+                return fieldName + " : " + fieldValue;
+            }).Aggregate((a, b) => a + " - " + b);
+            return className + " [" + fieldsInfos + "]";
         }
     }
 }
