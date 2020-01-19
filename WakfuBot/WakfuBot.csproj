@@ -273,7 +273,7 @@
     <Compile Include="InGame\Packets\ToSend\AddMultimanRequest.cs" />
     <Compile Include="InGame\Packets\ToSend\AddHeroRequest.cs" />
     <Compile Include="InGame\Packets\ToSend\ConfirmFightEnded.cs" />
-    <Compile Include="InGame\Packets\ToSend\ConfirmTurnCount.cs" />
+    <Compile Include="InGame\Packets\ToSend\FighterTurnEndAckMessage.cs" />
     <Compile Include="InGame\Packets\ToSend\EndTurn.cs" />
     <Compile Include="InGame\Packets\ToSend\FightPlacement.cs" />
     <Compile Include="InGame\Packets\ToSend\FreeSaoul.cs" />

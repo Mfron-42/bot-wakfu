@@ -292,7 +292,7 @@ namespace PacketEditor.WakfuBot.Bot.Actions
         public void LeaveDjSplit(int djLvl)
         {
             Manager.Send(ActorPathRequestMessage.GetPacket(BotActions.MainPlayer().GetPosition().GoToXFirst(new MapPosition(208, 97))));
-            Manager.Send(new byte[] { 0x00, 0x16, 0x03, 0x10, 0x11, 0x00, 0x00, 0x00, 0xD0, 0x00, 0x00, 0x00, 0x61, 0x00, 0x00, 0x06, 0x01, 0x01, 0xE0, 0xE0, 0xE0, 0xE0 });
+            Manager.SendBytes(new byte[] { 0x00, 0x16, 0x03, 0x10, 0x11, 0x00, 0x00, 0x00, 0xD0, 0x00, 0x00, 0x00, 0x61, 0x00, 0x00, 0x06, 0x01, 0x01, 0xE0, 0xE0, 0xE0, 0xE0 });
             Manager.Send(TeleportAction.GetPacket(15400859370435584, 11));
             Manager.AddOneExecutionAction(PacketType.InteractiveElementSpawn, (InteractiveElementSpawn o)
                 => Manager.Send(TeleportAction.GetPacket(15716419207610112, djLvl)));
@@ -309,13 +309,13 @@ namespace PacketEditor.WakfuBot.Bot.Actions
         {
             if (BotActions.MainPlayer().GetPosition().Z == 4)
             {
-                Manager.Send(new byte[] { 0x00, 0x11, 0x03, 0x10, 0x11 }.Concat(BotActions.MainPlayer().GetPosition().GetBytes()).Concat(new byte[] { 0x01, 0x3C }).ToArray());
+                Manager.SendBytes(new byte[] { 0x00, 0x11, 0x03, 0x10, 0x11 }.Concat(BotActions.MainPlayer().GetPosition().GetBytes()).Concat(new byte[] { 0x01, 0x3C }).ToArray());
                 BotActions.MainPlayer().GetPosition().X++;
                 BotActions.MainPlayer().GetPosition().Z = 0;
             }
             Manager.Send(ActorPathRequestMessage.GetPacket(BotActions.MainPlayer().GetPosition().GoToXFirst(new MapPosition(0, 1))));
             Manager.Send(TeleportAction.GetPacket(30260759020323840, 11));
-            Manager.Send(new byte[] { 0x00, 0x11, 0x03, 0x10, 0x11, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xBA, 0x00, 0x00, 0x01, 0xE0 });
+            Manager.SendBytes(new byte[] { 0x00, 0x11, 0x03, 0x10, 0x11, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xBA, 0x00, 0x00, 0x01, 0xE0 });
             Manager.Send(TeleportAction.GetPacket(30736847555150592, djLvl));
         }
     }
